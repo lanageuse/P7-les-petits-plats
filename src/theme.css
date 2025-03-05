@@ -1,0 +1,12 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --font-* : initial;
+  --font-sans : "Manrope", sans-serif;
+  --font-title : "Anton", sans-sherif;
+  --color-yellow : #FFD15B;
+  --color-gray : #EDEDED;
+  }
