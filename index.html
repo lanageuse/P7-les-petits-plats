@@ -56,11 +56,12 @@
     <main class="bg-gray p-12">
         <!-- Debut  filter -->
         <div class="flex justify-between">
-            <div class="flex gap-3" id="filter-dropdown">
-                <div class="relative inline-block text-left w-50">
+            <div class="flex gap-3" id="filters-dropdown">
+                <div class="relative inline-block text-left w-50 dropdown" data-type="ingredients"
+                    data-subtype="ingredient">
                     <div>
                         <button type="button"
-                            class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                            class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900"
                             id="menu-button" aria-expanded="true" aria-haspopup="true">
                             Ingrédients
                             <svg class="-mr-1 size-7 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
@@ -71,24 +72,12 @@
                             </svg>
                         </button>
                     </div>
-
-                    <!--
-                      Dropdown menu, show/hide based on menu state.
-                  
-                      Entering: "transition ease-out duration-100"
-                        From: "transform opacity-0 scale-95"
-                        To: "transform opacity-100 scale-100"
-                      Leaving: "transition ease-in duration-75"
-                        From: "transform opacity-100 scale-100"
-                        To: "transform opacity-0 scale-95"
-                    -->
-                    <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden"
+                    <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden dropdownlist overflow-hidden"
                         role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                         <div class="py-1" role="none">
-                            <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" -->
                             <div class="relative px-4 py-2">
-                                <input type="search" id="default-search"
-                                    class="block w-full pl-2 pr-6 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
+                                <input type="search"
+                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
                                 <button type="submit"
                                     class="text-white absolute end-4 bottom-2.5 font-medium text-sm px-2.5 py-2.5">
                                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true"
@@ -97,12 +86,74 @@
                                             stroke-width="1" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg></button>
                             </div>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-900 hover:bg-gray-100" role="menuitem"
-                                tabindex="-1" id="menu-item-0">Account settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-900" role="menuitem" tabindex="-1"
-                                id="menu-item-1">Support</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-900" role="menuitem" tabindex="-1"
-                                id="menu-item-2">License</a>
+                            <ul class="dropdownitems max-h-46 overflow-y-scroll">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative inline-block text-left w-50 dropdown" data-type="appliance">
+                    <div>
+                        <button type="button"
+                            class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900"
+                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            Appareils
+                            <svg class="-mr-1 size-7 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd"
+                                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden dropdownlist overflow-hidden"
+                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <div class="relative px-4 py-2">
+                                <input type="search" id="default-search"
+                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
+                                <button type="submit"
+                                    class="text-white absolute end-4 bottom-2.5 font-medium text-sm px-2.5 py-2.5">
+                                    <svg class="w-5 h-5 text-gray-500" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="1" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg></button>
+                            </div>
+                            <ul class="dropdownitems max-h-46 overflow-y-scroll">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative inline-block text-left w-50 dropdown" data-type="ustensils">
+                    <div>
+                        <button type="button"
+                            class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900"
+                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            Ustensiles
+                            <svg class="-mr-1 size-7 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd"
+                                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden dropdownlist overflow-hidden"
+                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <div class="relative px-4 py-2">
+                                <input type="search" name="Ustensiles"
+                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
+                                <button type="submit"
+                                    class="text-white absolute end-4 bottom-2.5 font-medium text-sm px-2.5 py-2.5">
+                                    <svg class="w-5 h-5 text-gray-500" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="1" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg></button>
+                            </div>
+                            <ul class="dropdownitems max-h-46 overflow-y-scroll">
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -114,9 +165,12 @@
             </div>
         </div>
         <!-- Fin filter -->
+        <!-- tag filter -->
+        <div class="flex flex-wrap gap-2 py-4" id="filters-tags">
+        </div>
         <!-- Debut Grid cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mt-10" id="recipes_wrapper">
-            
+
         </div>
         <!-- Fin Grid cards -->
     </main>
