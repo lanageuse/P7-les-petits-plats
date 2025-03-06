@@ -1,11 +1,13 @@
 import Api from './scripts/api/Api.js'
 import Recipe from './scripts/models/recipe.js'
 import RecipeCard from './scripts/components/recipeCard.js'
+import DropDown from './scripts/components/dropdown.js'
 class Index {
     constructor(){
         this.recipesApi = new Api('./data/recipes.json')
         this._recipes = []
         this.$wrapper = document.getElementById("recipes_wrapper")
+        this.DropDown = DropDown
     }
 
     async getRecipes(){
