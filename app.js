@@ -1,21 +1,21 @@
 import Api from './scripts/api/Api.js'
 import Recipe from './scripts/models/recipe.js'
 import RecipeCard from './scripts/components/recipeCard.js'
-import DropDown from './scripts/components/dropdown.js'
+import DropDown from './scripts/components/dropdown/Dropdown.js'
 class Index {
-    constructor(){
+    constructor() {
         this.recipesApi = new Api('./data/recipes.json')
         this._recipes = []
         this.$wrapper = document.getElementById("recipes_wrapper")
         this.DropDown = DropDown
     }
 
-    async getRecipes(){
+    async getRecipes() {
         const recipesData = await this.recipesApi.get()
         this._recipes = recipesData.map(data => new Recipe(data))
     }
 
-    async displayCardsRecipes(){
+    async displayCardsRecipes() {
         this._recipes.forEach((recipe) => {
             const card = new RecipeCard(recipe)
             const template = card.createCard();
@@ -23,9 +23,12 @@ class Index {
         })
     }
 
-    async main(){
+    async main() {
         await this.getRecipes()
         await this.displayCardsRecipes()
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            new DropDown(dropdown);
+        })
     }
 
 }
