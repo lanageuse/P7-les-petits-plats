@@ -44,42 +44,59 @@ class UpdateResult {
             .map(item => normalizeString(item.innerHTML))
     }
 
-    updateSearchResults() {
-        const searchValue = normalizeString(this.searchBar.value)
+    updateByFilters() {
         const ingredientsValues = this.getSelectedItems("ingredients")
         const applianceValues = this.getSelectedItems("appliance")
         const ustensilsValues = this.getSelectedItems("ustensils")
 
-        this.index.filteredRecipes = this.index.recipes.filter(recipe => {
-            const searchBar = searchValue.length === 0 ||
-                normalizeString(recipe.name).includes(searchValue) ||
-                normalizeString(recipe.description).includes(searchValue) ||
-                recipe.ingredients.some(ing => normalizeString(ing.ingredient).includes(searchValue))
-
+        this.index.filteredRecipes = this.index.filteredRecipes.filter( recipe => {
             const filteredIngredients = ingredientsValues.length === 0 ||
-                ingredientsValues.every(value =>
-                    recipe.ingredients.some(ing =>
-                        normalizeString(ing.ingredient).includes(value))
-                )
+            ingredientsValues.every(value =>
+                recipe.ingredients.some(ing =>
+                    normalizeString(ing.ingredient).includes(value))
+            )
 
-            const filteredAppliance = applianceValues.length === 0 ||
-                applianceValues.every(value =>
-                    normalizeString(recipe.appliance).includes(value)
-                )
+        const filteredAppliance = applianceValues.length === 0 ||
+            applianceValues.every(value =>
+                normalizeString(recipe.appliance).includes(value)
+            )
 
-            const filteredUstensils = ustensilsValues.length === 0 ||
-                ustensilsValues.every(value =>
-                    recipe.ustensils.some(ust =>
-                        normalizeString(ust).includes(value)
-                    )
+        const filteredUstensils = ustensilsValues.length === 0 ||
+            ustensilsValues.every(value =>
+                recipe.ustensils.some(ust =>
+                    normalizeString(ust).includes(value)
                 )
+            )
 
-            return searchBar && filteredIngredients && filteredAppliance && filteredUstensils
+            return filteredIngredients && filteredAppliance && filteredUstensils
         })
+    }
+
+    updateSearchResults() {
+        const searchValue = normalizeString(this.searchBar.value)
+        this.index.filteredRecipes = []
+
+        for (let i = 0; i < this.index.recipes.length; i++) {
+            if (normalizeString(this.index.recipes[i].name).length === 0 || normalizeString(this.index.recipes[i].name).indexOf(searchValue) !== -1) {
+                this.index.filteredRecipes.push(this.index.recipes[i])
+                continue;
+            }
+            if (normalizeString(this.index.recipes[i].description).length === 0 || normalizeString(this.index.recipes[i].description).indexOf(searchValue) !== -1) {
+                this.index.filteredRecipes.push(this.index.recipes[i])
+                continue;
+            }
+            for (let a = 0; a < this.index.recipes[i].ingredients.length; a++) {
+                if (normalizeString(this.index.recipes[i].ingredients[a].ingredient).length === 0 || normalizeString(this.index.recipes[i].ingredients[a].ingredient).indexOf(searchValue) !== -1) {
+                    this.index.filteredRecipes.push(this.index.recipes[i])
+                }
+            }
+        }
+
+        this.updateByFilters()
 
         this.index.displayCardsRecipes(this.index.filteredRecipes);
 
-        // Met à jour chaque dropdown existant avec les nouveaux résultats
+        // Met à jour chaque les items des dropdowns
         this.dropdowns.forEach(dropdown => {
             dropdownUpdateItems(dropdown, this.index.filteredRecipes)
         });
