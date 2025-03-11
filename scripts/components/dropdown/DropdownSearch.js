@@ -1,4 +1,6 @@
-class DropDownFilter {
+import { normalizeString } from "../../utils/normalizeString.js";
+
+class DropDownSearch {
     constructor(dropdown) {
         this.input = dropdown.dropdownInput;
         this.dropdownList = dropdown.dropdownList;
@@ -6,7 +8,7 @@ class DropDownFilter {
     }
 
     searchDropDown(e) {
-        const value = e.target.value.toLowerCase();
+        const value = normalizeString(e.target.value)
         const items = this.dropdownList.querySelectorAll("li");
 
         items.forEach(item => {
@@ -24,4 +26,4 @@ class DropDownFilter {
     }
 }
 
-export default DropDownFilter;
+export default DropDownSearch;
