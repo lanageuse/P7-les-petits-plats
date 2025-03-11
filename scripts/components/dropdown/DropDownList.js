@@ -1,36 +1,32 @@
-import Api from './../../api/Api.js';
+import { normalizeString } from "../../utils/normalizeString.js";
 
 class DropDownList {
     constructor(dropdown) {
-        this.recipesApi = new Api('./data/recipes.json');
         this.dataType = dropdown.dropdownType;
         this.dataSubType = dropdown.dropdownSubType;
         this.dropdownList = dropdown.dropdownList;
         this.dropdownItems = dropdown.dropdownItems;
-        this.init();
     }
 
-    async fetchDropdownItems() {
-        const recipes = await this.recipesApi.get();
+    async fetchDropdownItems(recipes) {
         const type = this.dataType;
         const subType = this.dataSubType;
-        let items = [];
-
         if (!recipes[0]?.hasOwnProperty(type)) {
             throw new Error(`Type de données "${type}" inconnu`);
         }
-
-        recipes.forEach((recipe) => {
-            if (Array.isArray(recipe[type])) {
-                recipe[type].forEach((entry) => {
-                    const value = entry[subType] ?? entry;
-                    if (!items.includes(value)) items.push(value);
-                });
-            } else if (!items.includes(recipe[type])) {
-                items.push(recipe[type]);
-            }
-        });
-
+        let items;
+        if (type === "ingredients") {
+            // Pour les ingrédients, on récupère les valeurs du sous-type "ingredient"
+            items = [...new Set(recipes.flatMap(recipe => recipe[type].map(ing => normalizeString(ing[subType]))))];
+        } 
+        if (type === "ustensils") {
+            // Pour les ustensiles, on récupère directement la liste sans subType
+            items = [...new Set(recipes.flatMap(recipe => recipe[type].map(ust => normalizeString(ust))))];
+        } 
+        if (type === "appliance") {
+            // Pour appliance (appareil) qui est une simple valeur
+            items = [...new Set(recipes.map(recipe => normalizeString(recipe[type])))];
+        }
         this.renderItems(items.sort());
     }
 
@@ -44,10 +40,6 @@ class DropDownList {
             element.innerHTML = item;
             this.dropdownItems.appendChild(element);
         });
-    }
-
-    init() {
-        this.fetchDropdownItems();
     }
 }
 
