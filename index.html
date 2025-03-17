@@ -16,14 +16,14 @@
                 <div class="flex lg:flex-1">
                     <a href="#" class="-m-1.5 p-1.5">
                         <span class="sr-only">Les petits plats</span>
-                        <img class="h-8 w-auto" src="./assets/images/logo.svg" alt="">
+                        <img class="h-8 w-auto" src="./assets/images/logo.svg" alt="Logo du site les petits plats">
                     </a>
                 </div>
             </nav>
         </header>
         <div class="relative isolate overflow-hidden pt-14">
-            <img src="./assets/images/bg-hero.jpg" alt="" class="absolute inset-0 -z-10 size-full object-cover">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <img src="./assets/images/bg-hero.jpg" alt="image montrant un plat de ramen" class="absolute inset-0 -z-10 size-full object-cover">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8" aria-hidden="true">
                 <div class="mx-auto lg:max-w-4xl py-32 sm:py-48 lg:py-56">
                     <div class="text-center">
                         <h1
@@ -36,7 +36,7 @@
                                 <div class="relative">
                                     <input type="search" id="default-search"
                                         class="block w-full p-5 text-sm text-gray-900 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Rechercher une recette, un ingrédient, ..." required  />
+                                        placeholder="Rechercher une recette, un ingrédient, ..." required >
                                     <button type="submit"
                                         class="text-white absolute end-2 bottom-2 bg-gray-950 hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2.5 py-2.5 dark:bg-black">
                                         <svg class="w-7 h-7 text-white" aria-hidden="true"
@@ -63,7 +63,7 @@
                     <div>
                         <button type="button"
                             class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900"
-                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            id="menu-ingredients" aria-expanded="true" aria-haspopup="true">
                             Ingrédients
                             <svg class="-mr-1 size-7 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true" data-slot="icon">
@@ -74,11 +74,11 @@
                         </button>
                     </div>
                     <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden dropdownlist overflow-hidden"
-                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        role="menu" aria-orientation="vertical" aria-labelledby="menu-ingredients" tabindex="-1">
                         <div class="py-1" role="none">
                             <div class="relative px-4 py-2">
                                 <input type="search"
-                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
+                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500">
                                 <button type="submit"
                                     class="text-white absolute end-4 bottom-2.5 font-medium text-sm px-2.5 py-2.5">
                                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true"
@@ -96,7 +96,7 @@
                     <div>
                         <button type="button"
                             class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900"
-                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            id="menu-appareils" aria-expanded="true" aria-haspopup="true">
                             Appareils
                             <svg class="-mr-1 size-7 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true" data-slot="icon">
@@ -107,11 +107,11 @@
                         </button>
                     </div>
                     <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden dropdownlist overflow-hidden"
-                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        role="menu" aria-orientation="vertical" aria-labelledby="menu-appareils" tabindex="-1">
                         <div class="py-1" role="none">
                             <div class="relative px-4 py-2">
-                                <input type="search" id="default-search"
-                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
+                                <input type="search"
+                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500">
                                 <button type="submit"
                                     class="text-white absolute end-4 bottom-2.5 font-medium text-sm px-2.5 py-2.5">
                                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true"
@@ -129,7 +129,7 @@
                     <div>
                         <button type="button"
                             class="inline-flex items-center w-full text-left justify-between gap-x-1.5 rounded-xl bg-white p-4 text-sm font-semibold text-gray-900"
-                            id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            id="menu-ustensile" aria-expanded="true" aria-haspopup="true">
                             Ustensiles
                             <svg class="-mr-1 size-7 text-gray-900" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true" data-slot="icon">
@@ -140,11 +140,11 @@
                         </button>
                     </div>
                     <div class="absolute w-full left-0 top-9.5 z-10 mt-2 origin-top-right rounded-b-xl bg-white  focus:outline-hidden hidden dropdownlist overflow-hidden"
-                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        role="menu" aria-orientation="vertical" aria-labelledby="menu-ustensile" tabindex="-1">
                         <div class="py-1" role="none">
                             <div class="relative px-4 py-2">
                                 <input type="search" name="Ustensiles"
-                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500" />
+                                    class="block w-full pl-2 pr-7 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-sm bg-white focus:ring-blue-500 focus:border-blue-500">
                                 <button type="submit"
                                     class="text-white absolute end-4 bottom-2.5 font-medium text-sm px-2.5 py-2.5">
                                     <svg class="w-5 h-5 text-gray-500" aria-hidden="true"
