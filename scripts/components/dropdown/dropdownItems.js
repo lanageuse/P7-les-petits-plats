@@ -1,7 +1,11 @@
 import { normalizeString } from "../../utils/normalizeString.js"
 
-
-
+/**
+ * Met à jour l'affichage des éléments du menu déroulant en fonction des recettes filtrées
+ * @param {HTMLElement} dropdown - L'élément DOM du menu déroulant
+ * @param {Array} filteredRecipes - Liste des recettes filtrées
+ * @returns {void}
+ */
 export const dropdownUpdateItems = (dropdown, filteredRecipes) => {
     const type = dropdown.dataset.type
     const items = [...dropdown.querySelectorAll("li")]
@@ -49,6 +53,12 @@ export const dropdownUpdateItems = (dropdown, filteredRecipes) => {
     }
 }
 
+/**
+ * Gère la sélection d'un élément dans le menu déroulant
+ * @param {Event} e - L'événement de clic
+ * @param {Function} updateSearchResults - Fonction de mise à jour des résultats de recherche
+ * @returns {void}
+ */
 export const selectItem = (e, updateSearchResults) => {
     const wrapper = document.getElementById('filters-tags');
     if (!e.target.dataset.active) {
@@ -67,6 +77,13 @@ export const selectItem = (e, updateSearchResults) => {
     }
 }
 
+/**
+ * Configure la suppression d'un tag de filtre
+ * @param {HTMLElement} tag - L'élément DOM du tag
+ * @param {HTMLElement} item - L'élément de liste associé au tag
+ * @param {Function} updateSearchResults - Fonction de mise à jour des résultats de recherche
+ * @returns {void}
+ */
 export const tagRemoval = (tag, item, updateSearchResults) => {
     const button = tag.querySelector("button");
     button.addEventListener("click", (e) => {

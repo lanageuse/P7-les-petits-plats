@@ -1,6 +1,14 @@
 import { normalizeString } from "../../utils/normalizeString.js";
 
+/**
+ * Gère la liste des éléments dans un menu déroulant
+ * @class
+ */
 class DropDownList {
+    /**
+     * Crée une instance de DropDownList
+     * @param {Object} dropdown - L'instance du menu déroulant parent
+     */
     constructor(dropdown) {
         this.dataType = dropdown.dropdownType;
         this.dataSubType = dropdown.dropdownSubType;
@@ -8,6 +16,13 @@ class DropDownList {
         this.dropdownItems = dropdown.dropdownItems;
     }
 
+    /**
+     * Récupère et traite les éléments à afficher dans le menu déroulant
+     * @param {Array} recipes - Liste des recettes à traiter
+     * @throws {Error} Si le type de données est inconnu
+     * @async
+     * @returns {void}
+     */
     async fetchDropdownItems(recipes) {
         const type = this.dataType;
         const subType = this.dataSubType;
@@ -30,6 +45,11 @@ class DropDownList {
         this.renderItems(items.sort());
     }
 
+    /**
+     * Affiche les éléments dans le menu déroulant
+     * @param {Array} items - Liste des éléments à afficher
+     * @returns {void}
+     */
     renderItems(items) {
         this.dropdownItems.innerHTML = '';
         items.forEach((item) => {
