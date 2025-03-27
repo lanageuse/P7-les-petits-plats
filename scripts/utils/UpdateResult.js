@@ -3,7 +3,15 @@ import { displayCountResult } from "./displayCountResult.js"
 import { dropdownUpdateItems, selectItem } from "../components/dropdown/dropdownItems.js"
 import { displayNoResult } from "./displayNoResult.js"
 
+/**
+ * Gère la mise à jour des résultats de recherche et des filtres
+ * @class
+ */
 class UpdateResult {
+    /**
+     * Crée une instance de UpdateResult
+     * @param {Object} index - L'instance contenant les recettes et les méthodes d'affichage
+     */
     constructor(index) {
         this.index = index
         this.searchBar = document.getElementById("default-search")
@@ -13,7 +21,10 @@ class UpdateResult {
         this.init()
     }
 
-
+    /**
+     * Initialise les écouteurs d'événements pour la recherche et les filtres
+     * @returns {void}
+     */
     init() {
         this.searchBar.addEventListener("input", (e) => {
             if (e.target.value.length > this.minValue || e.target.value.length === 0) {
@@ -38,12 +49,21 @@ class UpdateResult {
         displayCountResult(this.index.filteredRecipes.length)
     }
 
+     /**
+     * Récupère les éléments sélectionnés d'un type de filtre donné
+     * @param {string} type - Le type de filtre (ingredients, appliance, ustensils)
+     * @returns {Array<string>} Liste des valeurs sélectionnées normalisées
+     */
     getSelectedItems(type) {
         return [...document.querySelectorAll(`.dropdown[data-type="${type}"] li`)]
             .filter(item => item.dataset.active)
             .map(item => normalizeString(item.innerHTML))
     }
 
+    /**
+     * Met à jour les résultats de recherche en fonction des filtres actifs
+     * @returns {void}
+     */
     updateByFilters() {
         const ingredientsValues = this.getSelectedItems("ingredients")
         const applianceValues = this.getSelectedItems("appliance")
@@ -72,6 +92,12 @@ class UpdateResult {
         })
     }
 
+    /**
+     * @method updateSearchResults
+     * @description Met à jour les résultats de recherche en fonction de la valeur de recherche et des filtres
+     * Filtre les recettes par nom, description et ingrédients
+     * Met à jour l'affichage des cartes de recettes et des dropdowns
+     */
     updateSearchResults() {
         const searchValue = normalizeString(this.searchBar.value)
         this.index.filteredRecipes = []

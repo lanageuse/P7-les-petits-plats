@@ -1,8 +1,28 @@
+/**
+ * Gère la création et le rendu d'une carte de recette
+ * @class
+ */
 class recipeCard {
+    /**
+     * Crée une instance de recipeCard
+     * @param {Object} recipe - L'objet contenant les données de la recette
+     * @param {string} recipe.name - Le nom de la recette
+     * @param {string} recipe.image - Le nom du fichier image de la recette
+     * @param {number} recipe.time - Le temps de préparation en minutes
+     * @param {string} recipe.description - La description de la recette
+     * @param {Array<Object>} recipe.ingredients - La liste des ingrédients
+     * @param {string} recipe.ingredients[].ingredient - Le nom de l'ingrédient
+     * @param {number} [recipe.ingredients[].quantity] - La quantité de l'ingrédient (optionnel)
+     * @param {string} [recipe.ingredients[].unit] - L'unité de mesure de l'ingrédient (optionnel)
+     */
     constructor(recipe) {
         this._recipe = recipe
     }
 
+    /**
+     * Génère le HTML de la carte de recette
+     * @returns {string} Le HTML de la carte de recette formaté
+     */
     createCard() {
         const card = `<article class="relative rounded-xl overflow-hidden shadow-lg flex flex-col">
                 <div class="relative">
