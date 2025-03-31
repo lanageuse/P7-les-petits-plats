@@ -1,3 +1,9 @@
+/**
+ * Affiche un message d'erreur lorsqu'aucune recette n'est trouvée
+ * @param {string} searchValue - La valeur recherchée par l'utilisateur
+ * @param {number} countResult - Le nombre de résultats trouvés
+ * @returns {void}
+ */
 export const displayNoResult = (searchValue, countResult) => {
     const resultWrapper = document.getElementById("no-result")
     
