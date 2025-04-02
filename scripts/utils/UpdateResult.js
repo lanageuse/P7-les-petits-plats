@@ -60,6 +60,14 @@ class UpdateResult {
             .map(item => normalizeString(item.innerHTML))
     }
 
+    searchBarResults(recipe, searchValue){
+        return(
+                searchValue.length === 0 ||
+                normalizeString(recipe.name).includes(searchValue) ||
+                normalizeString(recipe.description).includes(searchValue) ||
+                recipe.ingredients.some(ing => normalizeString(ing.ingredient).includes(searchValue))
+        )
+    }
     /**
      * Met à jour les résultats de recherche en fonction des filtres actifs
      * @returns {void}
@@ -71,10 +79,8 @@ class UpdateResult {
         const ustensilsValues = this.getSelectedItems("ustensils")
 
         this.index.filteredRecipes = this.index.recipes.filter(recipe => {
-            const searchBar = searchValue.length === 0 ||
-                normalizeString(recipe.name).includes(searchValue) ||
-                normalizeString(recipe.description).includes(searchValue) ||
-                recipe.ingredients.some(ing => normalizeString(ing.ingredient).includes(searchValue))
+
+            const searchBar = this.searchBarResults(recipe, searchValue)
 
             const filteredIngredients = ingredientsValues.length === 0 ||
                 ingredientsValues.every(value =>
