@@ -60,14 +60,29 @@ class UpdateResult {
             .map(item => normalizeString(item.innerHTML))
     }
 
-    searchBarResults(recipe, searchValue){
-        return(
-                searchValue.length === 0 ||
-                normalizeString(recipe.name).includes(searchValue) ||
-                normalizeString(recipe.description).includes(searchValue) ||
-                recipe.ingredients.some(ing => normalizeString(ing.ingredient).includes(searchValue))
+    /**
+     * Filtre une recette en fonction d'une valeur de recherche
+     * @param {Object} recipe - L'objet recette à filtrer
+     * @param {string} searchValue - La valeur de recherche (déjà normalisée)
+     * @returns {boolean} - True si la recette correspond aux critères de recherche
+     */
+    searchBarResults(recipe, searchValue) {
+        return (
+            // Retourne true si la barre de recherche est vide
+            searchValue.length === 0 ||
+
+            // Vérifie si le nom de la recette contient la valeur recherchée
+            normalizeString(recipe.name).includes(searchValue) ||
+
+            // Vérifie si la description de la recette contient la valeur recherchée
+            normalizeString(recipe.description).includes(searchValue) ||
+
+            // Vérifie si au moins un des ingrédients contient la valeur recherchée
+            recipe.ingredients.some(ing => normalizeString(ing.ingredient).includes(searchValue))
         )
     }
+
+    
     /**
      * Met à jour les résultats de recherche en fonction des filtres actifs
      * @returns {void}
